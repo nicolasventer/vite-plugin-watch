@@ -18,5 +18,6 @@ module.exports = defineConfig({
         tryExtensions: [".ts", ".js", ".jsx", ".tsx", ".d.ts"],
       },
     ],
+    "node/no-unsupported-features/es-syntax": ["error", { ignores: ["modules"] }],
   },
 })

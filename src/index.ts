@@ -1,7 +1,7 @@
-import { PluginOption } from "vite"
-import minimatch from "minimatch"
-import path from "node:path"
+import micromatch from "micromatch"
 import { exec } from "node:child_process"
+import path from "node:path"
+import { PluginOption } from "vite"
 
 export const watch = (config: {
   pattern: string | string[]
@@ -46,7 +46,7 @@ export const watch = (config: {
 
       const patterns = Array.of(options.pattern).flat()
       const shouldRun = patterns.find((pattern) =>
-        minimatch(file, path.resolve(server.config.root, pattern).replaceAll("\\", "/"))
+        micromatch(file, path.resolve(server.config.root, pattern).replaceAll("\\", "/")),
       )
 
       if (shouldRun) {

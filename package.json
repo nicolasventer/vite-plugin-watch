@@ -37,20 +37,19 @@
     "node": ">=10.6.0"
   },
   "devDependencies": {
-    "@types/minimatch": "^5.1.2",
-    "@types/node": "^18.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.40.0",
-    "@typescript-eslint/parser": "^5.40.0",
-    "eslint": "^8.25.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-define-config": "^1.7.0",
-    "eslint-plugin-node": "^11.1.0",
-    "prettier": "^2.7.1",
-    "typescript": "^4.9.4",
-    "vite": "^4.3.9",
-    "vite-plugin-eslint": "^1.8.1"
+    "@types/node": "22.9.0",
+    "@typescript-eslint/eslint-plugin": "8.13.0",
+    "@typescript-eslint/parser": "8.13.0",
+    "eslint": "8.57.0",
+    "eslint-config-prettier": "8.10.0",
+    "eslint-define-config": "2.1.0",
+    "eslint-plugin-node": "11.1.0",
+    "prettier": "3.3.3",
+    "typescript": "5.6.3",
+    "vite": "5.4.10",
+    "vite-plugin-eslint": "1.8.1"
   },
   "dependencies": {
-    "minimatch": "^5.1.1"
+    "micromatch": "4.0.8"
   }
 }
