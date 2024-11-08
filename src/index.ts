@@ -5,7 +5,7 @@ import { PluginOption } from "vite"
 
 export const watch = (config: {
   pattern: string | string[]
-  command: string | string[]
+  command: string | string[] | ((file: string) => string) | ((file: string) => string)[]
   silent?: boolean
   timeout?: number
   onInit?: boolean
@@ -19,9 +19,11 @@ export const watch = (config: {
 
   let throttled = false
 
-  const execute = () => {
+  const execute = (file: string) => {
     ;[options.command].flat().forEach((command) => {
-      exec(command, (exception, output, error) => {
+      const commandToExecute = typeof command === "string" ? command : command(file)
+      if (!options.silent) console.info("Running", commandToExecute)
+      exec(commandToExecute, (exception, output, error) => {
         if (!options.silent && output) console.log(output)
         if (!options.silent && error) console.error(error)
       })
@@ -33,7 +35,7 @@ export const watch = (config: {
 
     buildStart() {
       if (options.onInit) {
-        execute()
+        execute("")
       }
     },
 
@@ -50,9 +52,7 @@ export const watch = (config: {
       )
 
       if (shouldRun) {
-        console.info("Running", options.command, "\n")
-
-        execute()
+        execute(file)
       }
     },
   }

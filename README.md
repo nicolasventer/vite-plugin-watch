@@ -21,7 +21,7 @@ import { defineConfig } from "vite"
 import { watch } from "vite-plugin-watch"
 
 export default defineConfig({
-  plugins: [ 
+  plugins: [
     watch({
       pattern: "app/{Data,Enums}/**/*.php",
       command: "php artisan typescript:transform",
@@ -40,13 +40,15 @@ The paths of tracked files are configured as [glob patterns](<https://en.wikiped
 
 ## Plugin options
 
-| name    | type             | description                                              | default |
-| ------- | ---------------- | -------------------------------------------------------- | ------- |
-| pattern | string\|string[] | Tracked files paths                                      |         |
-| command | string\|string[] | One or multiple command(s) to be executed on file change |         |
-| timeout | number           | Timeout between triggering the same command              | 500     |
-| silent  | boolean          | Hide the output in the console                           | false   |
-| onInit  | boolean          | Run the command on Vite start                            | true    |
+| name    | type                                     | description                                              | default |
+| ------- | ---------------------------------------- | -------------------------------------------------------- | ------- |
+| pattern | string\|string[]                         | Tracked files paths                                      |         |
+| command | string\|string[]\|string_fn\|string_fn[] | One or multiple command(s) to be executed on file change |         |
+| timeout | number                                   | Timeout between triggering the same command              | 500     |
+| silent  | boolean                                  | Hide the output in the console                           | false   |
+| onInit  | boolean                                  | Run the command on Vite start                            | true    |
+
+`string_fn` is an alias for `(file: string) => string`, which allows you to generate a command dynamically based on the changed file.
 
 ## Advanced Inertia
 
