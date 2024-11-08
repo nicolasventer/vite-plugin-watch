@@ -45,10 +45,11 @@ export const watch = (config: {
       throttled = true
 
       setTimeout(() => (throttled = false), options.timeout)
-
       const patterns = Array.of(options.pattern).flat()
-      const shouldRun = patterns.find((pattern) =>
-        micromatch(file, path.resolve(server.config.root, pattern).replaceAll("\\", "/")),
+      const shouldRun = patterns.find(
+        (pattern) =>
+          micromatch([file], path.resolve(server.config.root, pattern).replaceAll("\\", "/"))
+            .length > 0,
       )
 
       if (shouldRun) {
